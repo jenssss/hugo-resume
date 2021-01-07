@@ -15,44 +15,34 @@ tab2Target: experience
 
 education:
   - content: >
-      #### Master in Arts
+      #### PhD in Physics
 
-      Lorem ipsum dolor sit amet conset sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-    time: 2008-2010
+      Aarhus University. Tunneling Ionization of Diatomic Molecules.
+    time: 2012-2016
   - content: >
-      #### Master in Arts
+      #### Master in Physics
 
-      Lorem ipsum dolor sit amet conset sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-    time: 2008-2010
+      Aarhus University
+    time: 2011-2014
   - content: >
-      #### Master in Arts
+      #### Bachelor in Physics
 
-      Lorem ipsum dolor sit amet conset sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-    time: 2008-2010
-  - content: >
-      #### Master in Arts
-
-      Lorem ipsum dolor sit amet conset sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-    time: 2008-2010
+      Aarhus University. Supplementary courses in mathematics.
+    time: 2008-2011
 
 experience:
   - content: >
-      #### Umbrella co. 
+      #### The University of Electro-Communications
 
-      Lorem ipsum dolor sit amet conset sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-    time: 2016-Present
+      Assistant Professor
+    time: 2019-Present
   - content: >
-      #### Aperture Science 
+      #### The University of Electro-Communications
 
-      Lorem ipsum dolor sit amet conset sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-    time: 2010-2016
+      Postdoctoral fellow
+    time: 2017-2019
   - content: >
-      #### ACME Inc. 
+      #### Kansas State University
 
-      Lorem ipsum dolor sit amet conset sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-    time: 2005-2010
-  - content: >
-      #### LexCorp 
-
-      Lorem ipsum dolor sit amet conset sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-    time: 2001-2005
+      Postdoc
+    time: 2016-2017

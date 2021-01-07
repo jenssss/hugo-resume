@@ -20,10 +20,10 @@ weight = 2
 name = "Resume"
 url = "#resume"
 weight = 5
-[[menu.main]]
-name = "Blog"
-url = "#blog"
-weight = 6
+# [[menu.main]]
+# name = "Blog"
+# url = "#blog"
+# weight = 6
 [[menu.main]]
 name = "Contact"
 url = "#contact"
@@ -42,10 +42,10 @@ weight = 1
 [params]
 blogPageURL = "blog"
 contactLink = "contact"
-copyright = "All right reserved copyright © Portio 2020"
+copyright = "All right reserved copyright © Portio 2020. Built with Hugo and Netlify."
 footerLogo = "images/contact/widget-logo.png"
-formspreeURL = "YOUR FORMSPREE URL"
-googleAnalytics = "YOUR GOOGLE ANALYTICS CODE"
+# formspreeURL = "YOUR FORMSPREE URL"
+# googleAnalytics = "YOUR GOOGLE ANALYTICS CODE"
 logo = "images/site-navigation/logo.png"
 
 [params.address]
