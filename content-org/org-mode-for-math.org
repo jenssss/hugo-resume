@@ -1,0 +1,36 @@
+#+title: Using org-mode for lots of math
+#+subtitle: Writing dynamical technical documentation
+#+date: 2020-01-16
+#+tags[]: howto, emacs
+#+HUGO_SECTION: blog
+#+HUGO_BASE_DIR: ../
+#+EXPORT_HUGO_CUSTOM_FRONT_MATTER: :mathjax true
+
+
+* Struggling with PDFs
+:PROPERTIES:
+:EXPORT_FILE_NAME: org-mode-for-math
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :mathjax true
+:END:
+
+During my work as a physisict, I often write technical documentation
+outlining a mathematical derivation.
+
+The challenge with writing down a mathematical derivation is the
+various levels of abstraction that are involved. If I write out all
+the little details of how to do each step in the derivation, the
+resulting document becomes very long and basically impossible to
+navigate. If on the other hand I just show the most important
+equations encountered during the derivation, it becomes easier to read
+and follow the overall structure of the derivation, but very difficult
+to redo the derivation, since all the little details are missing.
+
+Ideally I want both, to include all the little details, but also be
+able to hide them, in order to get an overview of the derivation as a
+whole.
+
+LaTeX pdf 
+
+\begin{align}
+   f(x) = x^2
+\end{align}
