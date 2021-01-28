@@ -5,15 +5,25 @@
 #+HUGO_SECTION: blog
 #+HUGO_BASE_DIR: ../
 #+EXPORT_HUGO_CUSTOM_FRONT_MATTER: :mathjax true
+#+EXPORT_FILE_NAME: org-mode-for-math
 
 
 * Struggling with PDFs
 :PROPERTIES:
-:EXPORT_FILE_NAME: org-mode-for-math
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :mathjax true
 :END:
+# :EXPORT_FILE_NAME: org-mode-for-math
 
-During my work as a physisict, I often write technical documentation
+As part of my work as a physicist, I read papers with long
+mathematical derivations. In these papers a lot of the technical
+details of these derivations are omitted to save space and to make the
+paper more readable. Typically only the main equations in the
+derivation are given, interspersed between text giving an outline of
+the derivation. This is a good structure for quickly getting an
+overall idea of how the derivation goes, but it makes it difficult to
+reproduce it.
+
+Working as a physisict, I often write technical documentation
 outlining a mathematical derivation.
 
 The challenge with writing down a mathematical derivation is the
@@ -29,8 +39,55 @@ Ideally I want both, to include all the little details, but also be
 able to hide them, in order to get an overview of the derivation as a
 whole.
 
+LaTeX is the language for writing anything that contains math. The
+standard way of using LaTeX is to first write source code in .tex
+file, then compile it to .pdf format. This is quite useful for writing
+papers
+
+
 LaTeX pdf 
 
 \begin{align}
    f(x) = x^2
 \end{align}
+
+
+** org-mode
+
+Bootstrap
+
+#+BEGIN_SRC elisp
+(defun my/filter-collapsiable-replacer (id type post)
+  (concat "<div class=\"panel-group\"> 
+    <div class=\"panel panel-default\">
+      <div class=\"panel-heading\">
+        <h4 class=\"panel-title\">
+          <a data-toggle=\"collapse\" class=\"collapsed\" href=\"#" id "\">Show " type "</a>
+        </h4>
+      </div>
+      <div id=\"" id "\" class=\"panel-collapse collapse  tex2jax_ignore\">
+        <div class=\"panel-body\">" post ))
+(defvar four-end-div "      </div>
+    </div>
+  </div>
+</div>
+")
+
+(defun my/filter-collapsiable-src (trans backend _comm)
+  "Make Collapsibles src blocks."
+  (pcase backend
+    (`html
+     (concat (my/filter-collapsiable-replacer (org-id-new) "source" "") trans four-end-div)
+     )
+    )
+  )
+(add-to-list 'org-export-filter-src-block-functions
+             #'my/filter-collapsiable-src)
+
+#+END_SRC
+
+* Footnotes
+* COMMENT Local Variables                          :ARCHIVE:
+# Local Variables:
+# eval: (org-hugo-auto-export-mode)
+# End:
