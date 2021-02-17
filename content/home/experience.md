@@ -8,23 +8,33 @@ weight = 30  # Order that this section will appear.
 # Widget title
 title = "Experience"
 # Widget subtitle
-subtitle = "What lead me to acquire experience."
+subtitle = ""
 
 date_format = "Jan 2006" # Date format https://gohugo.io/functions/dateformat/#readout
 
 [[period]]
-  title = "Chief cook"
-  subtitle = "Krusty krab"
-  location = "Bikini Bottom"
-  date_start = "2017-01-01"
+  title = "Assistant Professor"
+  company = "The University of Electro-Communications"
+  company_url = "https://www.uec.ac.jp/"
+  location = "Tokyo"
+  date_start = "2019-11-30"
   date_end = ""
-  description = "Chief cook of the biggest restaurant of Bikini Bottom."
 
 [[period]]
-  title = "Trainee cook"
-  subtitle = "Krusty krab"
-  location = "California"
-  date_start = "2016-01-01"
-  date_end = "2016-12-31"
-  description = "I learned the basics of cooking, the passion and the secrets of a good burger."
+  title = "Postdoc"
+  company = "The University of Electro-Communications"
+  company_url = "https://www.uec.ac.jp/"
+  location = "Tokyo"
+  date_start = "2017-11-30"
+  date_end = "2019-11-30"
+  description = """"""
+
+[[period]]
+  title = "Postdoc"
+  company = "Kansas State University"
+  company_url = "https://www.phys.ksu.edu/"
+  location = "Kansas"
+  date_start = "2016-11-01"
+  date_end = "2017-10-01"
+  description = """"""
 +++

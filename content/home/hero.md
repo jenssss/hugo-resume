@@ -7,7 +7,7 @@ weight = 10
 # hidden = true
 
 # Hero image (optional). Enter filename of an image in the `static/` folder.
-hero_media = "/img/portrait.jpg"
+hero_media = "/images/hero/stick-man.png"
 
 # Buttons
 # Add as much button as you want
@@ -25,7 +25,7 @@ hero_media = "/img/portrait.jpg"
 
 +++
 
-# A theme to **express** your ideas.
-
-Pico is a minimalist, readable, responsive, light and beautiful Hugo theme.
+# Hi, I'm **Jens**. A physicist looking for a **software engineering** or **data science** role.
+ 
+This site is still under construction. It will eventually host my resume
 
