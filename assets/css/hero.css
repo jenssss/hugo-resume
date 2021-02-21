@@ -1,4 +1,9 @@
 
+#hero {
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
 .hero-text > h1{
     letter-spacing: -0.025em;
     font-size: 1.7rem;
