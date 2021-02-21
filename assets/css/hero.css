@@ -1,0 +1,10 @@
+
+.hero-text > h1{
+    letter-spacing: -0.025em;
+    font-size: 1.7rem;
+}
+
+.hero-img{
+  border: 15px solid #fff;
+}
+
