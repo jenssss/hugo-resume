@@ -5,10 +5,10 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 10  # Order that this section will appear.
 
-title = "Academia"
+title = "Jens Svensmark"
 
 # Hero image (optional). Enter filename of an image in the `static/img/` folder.
-hero_media = "user-2.png"
+hero_media = "user.png"
 
 [design.background]
   # Apply a background color, gradient, or image.
@@ -42,6 +42,6 @@ hero_media = "user-2.png"
   label = "Contact me"
 
 +++
-## My name is **Jens Svensmark** and I'm an **Assistant Professor** specializing in **Physics**
+# Hi, I'm **Jens**. I'm a physicist looking for a **software engineering** or **data science** role.
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.
+This site is still under construction. It will eventually host my resume

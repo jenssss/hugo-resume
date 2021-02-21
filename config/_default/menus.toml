@@ -9,50 +9,15 @@
   weight = 10
 
 [[main]]
-  name = "Posts"
-  url = "#posts"
+  name = "Blog"
+  url = "blog/"
   weight = 20
-
-# [[main]]
-#   name = "Projects"
-#   url = "#projects"
-#   weight = 30
-
-[[main]]
-  name = "Publications"
-  url = "#publications"
-  weight = 40
-
-# [[main]]
-#   name = "Courses"
-#   url = "courses/"
-#   weight = 50
 
 [[main]]
   name = "Contact"
   url = "#contact"
-  weight = 60
+  weight = 30
 
-[[main]]
-  name = "Blog"
-  url = "blog/"
-  weight = 70
-
-
-# [[main]]
-#   name = "dropdown"
-#   url = "#"
-#   hasChildren = true
-
-# [[main]]
-#   parent = "dropdown"
-#   name = "dropdown 1"
-#   url = "#"
-
-# [[main]]
-#   parent = "dropdown"
-#   name = "dropdown 2"
-#   url = "#!"
 
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
