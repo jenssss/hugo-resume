@@ -7,7 +7,7 @@ color_theme = "default-blue"
 #color_theme = "ocean"
 # color_theme = "strawberry"
 # Enable users to switch between day and night mode?
-day_night = true
+day_night = false
 
 # Font style.
 #   Choose from `default`, `classic`, or `playfair`.
@@ -68,6 +68,7 @@ appointment_url = ""
 contact_links = [
   # {icon = "twitter", icon_pack = "fab", name = "DM Me", link = "https://twitter.com/Twitter"},
   {icon = "linkedin", icon_pack = "fab", name = "DM Me", link = "https://www.linkedin.com/in/jens-svensmark/"},
+  {icon = "github", icon_pack = "fab", name = "Github", link = "https://github.com/jenssss/"},
   # {icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:echo123?call"},
   # {icon = "keybase", icon_pack = "fab", name = "Chat on Keybase", link = "https://keybase.io/"},
   # {icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},
