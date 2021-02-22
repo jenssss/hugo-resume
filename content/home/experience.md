@@ -20,22 +20,16 @@ date_format = "Jan 2006"
 [[experience]]
   title = "Assistant Professor"
   company = "The University of Electro-Communications"
-  company_url = ""
+  company_url = "https://www.uec.ac.jp/"
   location = "Tokyo"
   date_start = "2019-11-30"
   date_end = ""
-  description = """
-  Responsibilities include:
-  
-  * Analysing
-  * Modelling
-  * Deploying
-  """
+  description = """"""
 
 [[experience]]
   title = "Postdoc"
   company = "The University of Electro-Communications"
-  company_url = ""
+  company_url = "https://www.uec.ac.jp/"
   location = "Tokyo"
   date_start = "2017-11-30"
   date_end = "2019-11-30"
@@ -44,7 +38,7 @@ date_format = "Jan 2006"
 [[experience]]
   title = "Postdoc"
   company = "Kansas State University"
-  company_url = ""
+  company_url = "https://www.phys.ksu.edu/"
   location = "Kansas"
   date_start = "2016-11-01"
   date_end = "2017-10-01"
