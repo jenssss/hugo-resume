@@ -34,7 +34,7 @@ $sta-home-section-even: {{ $scr.Get "home_section_even" }};
 $sta-dark-home-section-odd: {{ $scr.Get "dark_home_section_odd" }};
 $sta-dark-home-section-even: {{ $scr.Get "dark_home_section_even" }};
 
-$navbar-padding-x:                  6.0rem;
+// $navbar-padding-x:                  6.0rem;
 
 @import "bootstrap_variables";
 
