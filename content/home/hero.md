@@ -44,4 +44,6 @@ hero_media = "user.png"
 +++
 # Hi, I'm **Jens**. I'm a physicist looking for a **software engineering** or **data science** role.
 
-This site is still under construction. It will eventually host my resume
+Note: This site is still under construction.
+
+Click below, or scroll down to learn more.

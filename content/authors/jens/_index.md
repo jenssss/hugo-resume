@@ -22,19 +22,19 @@ organizations:
   url: ""
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include atoms and molecules in strong fields.
+bio: I'm a quantum physicist currently looking for a software engineering or data science role.
 
 # Should the user's education and interests be displayed?
 display_education: true
 
 interests:
-- Atoms
-- Molecules
-- Lasers
+- Programming
+- Math
+- Physics
 
 education:
   courses:
-  - course: PhD in Physics
+  - course: PhD in Quantum Physics
     institution: Aarhus University
     year: 2012-2016
   - course: Master in Physics
@@ -75,4 +75,14 @@ email: ""
 
 ---
 
-It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum. The point of using Lorem Ipsum. distracted by the readable content of a page.
+Currently I am working as a [quantum
+physicist](http://power1.pc.uec.ac.jp/~jenssss/). As part of this, I
+write programs to simulate the time evolution of quantum systems. I
+very much enjoy and feel passionate about the programming part of my
+work, and I would like to pursue this even further. That is why I am
+currently looking for a software engineering or data science job.
+
+With a PhD in quantum physics I have a solid mathematical/technical
+background. Through my work as a physicist I have gained extensive
+experience using both efficient low-level languages like Fortran, and
+more abstract high-level languages like Python.
