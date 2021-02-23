@@ -1,3 +1,7 @@
+#+SETUPFILE: ~/mol_1d/mol_1d/utils/notes/stuff-I-like-to-use.setup
+#+SETUPFILE: ~/mol_1d/mol_1d/utils/notes/math-things.setup
+
+
 #+title: Using org-mode for lots of math
 #+subtitle: Writing dynamical technical documentation
 #+date: 2020-01-16
@@ -13,77 +17,152 @@
 :END:
 # :EXPORT_FILE_NAME: org-mode-for-math
 
-As part of my work as a physicist, I read papers with long
-mathematical derivations. In these papers a lot of the technical
-details of these derivations are omitted to save space and to make the
-paper more readable. Typically only the main equations in the
-derivation are given, interspersed between text giving an outline of
-the derivation. This is a good structure for quickly getting an
-overall idea of how the derivation goes, but it makes it difficult to
-reproduce it.
+
+# As part of my work as a physicist, I read papers with long
+# mathematical derivations. In these papers a lot of the technical
+# details of these derivations are omitted to save space and to make the
+# paper more readable. Typically only the main equations in the
+# derivation are given, interspersed between text giving an outline of
+# the derivation. This is a good structure for quickly getting an
+# overall idea of how the derivation goes, but it makes it difficult to
+# reproduce it.
 
 Working as a physisict, I often write technical documentation
-outlining a mathematical derivation.
+outlining a mathematical derivation. For this purpose, [[https://www.latex-project.org/][LaTeX]] is /the/
+standard language. With LaTeX, one can create high-quality documents
+with beautiful typography and it includes support for practically any
+mathematical notation you could want.
 
 The challenge with writing down a mathematical derivation is the
 various levels of abstraction that are involved. If I write out all
 the little details of how to do each step in the derivation, the
 resulting document becomes very long and basically impossible to
 navigate. If on the other hand I just show the most important
-equations encountered during the derivation, it becomes easier to read
-and follow the overall structure of the derivation, but very difficult
-to redo the derivation, since all the little details are missing.
+equations of the derivation, it becomes easier to read and follow the
+overall structure of the derivation, but very difficult to redo the
+derivation, since all the little details are missing.
 
 Ideally I want both, to include all the little details, but also be
 able to hide them, in order to get an overview of the derivation as a
 whole.
 
-LaTeX is the language for writing anything that contains math. The
-standard way of using LaTeX is to first write source code in .tex
-file, then compile it to .pdf format. This is quite useful for writing
-papers
+The problem is that the standard way of using LaTeX is to first write
+source code in a ~.tex~ file, then compile it to ~.pdf~ format. For
+writing scientic papers or a thesis, the static pdf format is quite
+well suited. But for my own derivations, I needed something more
+dynamic.
 
-
-LaTeX pdf 
-
-\begin{align}
-   f(x) = x^2
-\end{align}
-
+I thought for a while about what would be a suitable alternative to
+pdf, until finally I realized the humble internet browser had just the
+features I was looking for. I remembered seeing wikipedia articles,
+where one could click a button to show and hide parts of a
+mathematical derivation. So I started looking into how I could
+make similar collapsible derivations in html.
 
 ** org-mode
 
-Bootstrap
+As an avid user of the emacs editor, I found that [[https://orgmode.org/][org-mode]] seemed to
+fit what I was looking for. Instead of writing files directly in the
+~.tex~ format, I would write in the ~.org~ format (a kind of markup),
+and then export that to either ~.tex~ or to ~.html~. It even came with
+builtin support for LaTeX rendering in the ~.html~ output using the
+web based LaTeX renderer [[https://www.mathjax.org/][MathJax]].
 
-#+BEGIN_SRC elisp
-(defun my/filter-collapsiable-replacer (id type post)
-  (concat "<div class=\"panel-group\"> 
-    <div class=\"panel panel-default\">
-      <div class=\"panel-heading\">
-        <h4 class=\"panel-title\">
-          <a data-toggle=\"collapse\" class=\"collapsed\" href=\"#" id "\">Show " type "</a>
-        </h4>
+# At first I looked into whether there were some tool to convert ~.tex~
+# files into html. It turned out that tools such as pandoc existed for
+# that very type of conversion. But the result seemed like it needed a
+# lot of modifcation after conversion to be useful.
+
+Next I wanted to add collapsible structures to my ~.html~ output.  The
+theme I was using for the html export was based on Bootstrap, so
+combining the example in the [[https://getbootstrap.com/docs/4.0/components/collapse/#example][bootstrap documentation]] and [[https://orgmode.org/manual/Advanced-Export-Configuration.html][this org-mode
+guide]] I added the following to my ~~/.emacs~
+#+BEGIN_SRC lisp
+  (defun collapsible-template-start (id type post)
+    """Template for inserting beginning of collapsible html element."""
+    (concat "<p>
+    <a data-toggle=\"collapse\" href=\"#collapsible-" id "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExample\">
+      Show " type "
+    </a>
+  </p>
+  <div class=\"collapse\" id=\"collapsible-" id "\">
+    <div class=\"card card-body\"> " post ))
+
+  (defvar collapsible-template-end "      </div>
       </div>
-      <div id=\"" id "\" class=\"panel-collapse collapse  tex2jax_ignore\">
-        <div class=\"panel-body\">" post ))
-(defvar four-end-div "      </div>
-    </div>
-  </div>
-</div>
-")
+  ")
 
-(defun my/filter-collapsiable-src (trans backend _comm)
-  "Make Collapsibles src blocks."
-  (pcase backend
-    (`html
-     (concat (my/filter-collapsiable-replacer (org-id-new) "source" "") trans four-end-div)
-     )
+  (defun my/filter-collapsible (text backend info)
+    "Make Collapsible element."
+    (pcase backend
+      (`html
+       (when (string-match-p (regexp-quote "collapsible") text)
+         (concat (collapsible-template-start (org-id-new) "derivation" "") text collapsible-template-end)
+         )
+       )
+      )
     )
-  )
-(add-to-list 'org-export-filter-src-block-functions
-             #'my/filter-collapsiable-src)
 
+  (add-to-list 'org-export-filter-special-block-functions
+               #'my/filter-collapsible)
 #+END_SRC
+This elisp code wraps any block that contains the word "collapsible"
+in html div's that makes the block collapsible, and adds a clickable
+link with the text ~Show derivation~ before the block. Note that since
+a unique id is required for the link to know which collapsible element
+to work, I used the ~org-id-new~ function to generate a random id.
+
+To use this, I can add a block like the following to my ~.org~ file
+#+BEGIN_SRC
+#+begin_collapsible
+  Schrödinger's equation
+  \begin{align*}
+      i \frac{d}{dt}\Psi = H\Psi
+  \end{align*}
+#+end_collapsible
+#+END_SRC
+Upon export it should look like this (click to expand the link to
+expand the collapsible, click again to collapse it)
+#+begin_collapsible
+  Schrödinger's equation
+  \begin{align*}
+      i \frac{d}{dt}\Psi = H\Psi
+  \end{align*}
+#+end_collapsible
+
+It is also possible to nest collapsibles. A little care must be taken,
+since org is not happy about nesting the same type of block, at each
+nesting level adding some different superscript superscript should be added to each block, like below.
+#+BEGIN_SRC
+#+begin_collapsible
+  Schrödinger's time dependent equation
+  \begin{align*}
+      i \frac{d}{dt}\Psi = H\Psi
+  \end{align*}
+#+begin_collapsible1
+  Schrödinger's time independent equation
+  \begin{align*}
+      H\Psi & = E\Psi
+  \end{align*}
+#+end_collapsible1
+#+end_collapsible
+#+END_SRC
+Which when exported will look like
+#+begin_collapsible
+  Schrödinger's equation
+  \begin{align*}
+      i \frac{d}{dt}\Psi = H\Psi
+  \end{align*}
+#+begin_collapsible1
+  Schrödinger's time independent equation
+  \begin{align*}
+      H\Psi & = E\Psi
+  \end{align*}
+#+end_collapsible1
+#+end_collapsible
+
+
+
 
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
