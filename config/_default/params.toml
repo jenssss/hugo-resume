@@ -69,6 +69,7 @@ contact_links = [
   # {icon = "twitter", icon_pack = "fab", name = "DM Me", link = "https://twitter.com/Twitter"},
   {icon = "linkedin", icon_pack = "fab", name = "DM Me", link = "https://www.linkedin.com/in/jens-svensmark/"},
   {icon = "github", icon_pack = "fab", name = "Github", link = "https://github.com/jenssss/"},
+  {icon = "envelope", icon_pack = "fas", name = "Email", link = "mailto:jens@svensmark.jp"},
   # {icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:echo123?call"},
   # {icon = "keybase", icon_pack = "fab", name = "Chat on Keybase", link = "https://keybase.io/"},
   # {icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},

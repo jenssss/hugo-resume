@@ -34,7 +34,7 @@ hero_media = "user.png"
 #   Display link(s) by specifying a URL and label below. Icon is optional for `[cta]`.
 #   Remove a link/note by deleting a cta/note block.
 [btn]
-  url = "/authors/admin"
+  url = "#about"
   label = "Know more"
   
 [btn_alt]
