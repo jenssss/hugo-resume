@@ -1,0 +1,11 @@
+<p>
+  <a data-toggle="collapse" href="#collapsible-{{ .Get "id" }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Show {{ .Get "type" }}
+  </a>
+</p>
+<div class="collapse" id="collapsible-{{ .Get "id" }}">
+  <div{{ if .Get "divclass" }} class="{{ .Get "divclass" }}"{{ else }}{{ end }}>
+    {{ .Inner | markdownify}}
+  </div>
+</div>
+

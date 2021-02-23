@@ -4,13 +4,12 @@
 #+tags[]: howto, emacs
 #+HUGO_SECTION: blog
 #+HUGO_BASE_DIR: ../
-#+EXPORT_HUGO_CUSTOM_FRONT_MATTER: :mathjax true
+#+hugo_custom_front_matter: :math true :#comment "this file is [auto-generated]"
 #+EXPORT_FILE_NAME: org-mode-for-math
 
 
 * Struggling with PDFs
 :PROPERTIES:
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :mathjax true
 :END:
 # :EXPORT_FILE_NAME: org-mode-for-math
 
