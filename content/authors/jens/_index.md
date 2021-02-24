@@ -75,8 +75,7 @@ email: ""
 
 ---
 
-Currently I am working as a [quantum
-physicist](http://power1.pc.uec.ac.jp/~jenssss/). As part of this, I
+Currently I am working as a quantum physicist. As part of this, I
 write programs to simulate the time evolution of quantum systems. I
 very much enjoy and feel passionate about the programming part of my
 work, and I would like to pursue this even further. That is why I am
@@ -86,3 +85,6 @@ With a PhD in quantum physics I have a solid mathematical/technical
 background. Through my work as a physicist I have gained extensive
 experience using both efficient low-level languages like Fortran, and
 more abstract high-level languages like Python.
+
+For details about my research, see [my research
+page](http://power1.pc.uec.ac.jp/~jenssss/).

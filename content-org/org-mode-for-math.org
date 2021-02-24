@@ -12,7 +12,7 @@
 #+EXPORT_FILE_NAME: org-mode-for-math
 
 
-* Struggling with PDFs
+# * Struggling with PDFs
 
 # As part of my work as a physicist, I read papers with long
 # mathematical derivations. In these papers a lot of the technical

@@ -7,8 +7,6 @@ math = true
 #comment = "this file is [auto-generated]"
 +++
 
-## Struggling with PDFs {#struggling-with-pdfs}
-
 Working as a physisict, I often write technical documentation
 outlining a mathematical derivation. For this purpose, [LaTeX](https://www.latex-project.org/) is _the_
 standard language. With LaTeX, one can create high-quality documents
@@ -109,7 +107,7 @@ To use this, I can add a block like the following to my `.org` file
 Upon export it should look like this (click the link to expand the
 collapsible, click again to collapse it)
 
-{{< collapsible-split/start id=ce820ca06-ca4f-42ae-8234-09719c2c7d6f type=derivation divclass="card card-body" >}}<div class="collapsible">
+{{< collapsible-split/start id=cab2eb429-449a-46a1-b9a6-f87be421843c type=derivation divclass="card card-body" >}}<div class="collapsible">
   <div></div>
 
 Schrödinger's equation
@@ -145,7 +143,7 @@ block, like below.
 
 Which when exported will look like
 
-{{< collapsible-split/start id=cafd6b324-e6e8-4232-9a62-7161af79fea8 type=derivation divclass="card card-body" >}}<div class="collapsible">
+{{< collapsible-split/start id=c462e51bd-d685-42c4-9859-3362c3a17495 type=derivation divclass="card card-body" >}}<div class="collapsible">
   <div></div>
 
 Schrödinger's equation
@@ -156,7 +154,7 @@ Schrödinger's equation
 \end{align*}
 
 {{< /math-environment >}}
-{{< collapsible-split/start id=c2fdefff6-18cc-4886-bbaf-c956398b23c0 type=derivation divclass="card card-body" >}}<div class="collapsible1">
+{{< collapsible-split/start id=c291dadfe-e8f8-4d3f-9477-263595bef640 type=derivation divclass="card card-body" >}}<div class="collapsible1">
   <div></div>
 
 Schrödinger's time independent equation
