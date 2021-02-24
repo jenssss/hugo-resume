@@ -1,0 +1,8 @@
+<p>
+  <a class="collapsed" data-toggle="collapse" href="#collapsible-{{ .Get "id" }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Show {{ .Get "type" }}
+  </a>
+</p>
+<div class="collapse mathjax_ignore" id="collapsible-{{ .Get "id" }}">
+  <div{{ if .Get "divclass" }} class="{{ .Get "divclass" }} collapsible"{{ else }}{{ end }}>
+

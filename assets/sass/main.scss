@@ -35,6 +35,8 @@ $sta-dark-home-section-odd: {{ $scr.Get "dark_home_section_odd" }};
 $sta-dark-home-section-even: {{ $scr.Get "dark_home_section_even" }};
 
 // $navbar-padding-x:                  6.0rem;
+// $code-color:                        inherit;
+$code-color:                        gray;
 
 @import "bootstrap_variables";
 
@@ -42,3 +44,5 @@ $sta-dark-home-section-even: {{ $scr.Get "dark_home_section_even" }};
 @import "vendor/bootstrap/bootstrap";
 
 @import "academia/academia";
+
+// @import "my_theme/_code";
