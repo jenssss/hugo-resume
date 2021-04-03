@@ -1,11 +1,17 @@
 +++
-title = "Organizing math derivations using org-mode"
+title = "Math derivations with collapsibles"
 author = ["Jens Svensmark"]
-date = 2020-02-24
+date = 2020-04-03
+tags = ["howto", "emacs", "org-mode", "html"]
 draft = false
 math = true
 #comment = "this file is [auto-generated]"
 +++
+
+This blog post is about exporting mathematical derivations to html
+using [org-mode](https://orgmode.org/), with collapsibles to help organizing the content.
+
+<!--more-->
 
 Working as a physisict, I often write technical documentation
 outlining a mathematical derivation. For this purpose, [LaTeX](https://www.latex-project.org/) is _the_
@@ -107,17 +113,14 @@ To use this, I can add a block like the following to my `.org` file
 Upon export it should look like this (click the link to expand the
 collapsible, click again to collapse it)
 
-{{< collapsible-split/start id=cab2eb429-449a-46a1-b9a6-f87be421843c type=derivation divclass="card card-body" >}}<div class="collapsible">
+{{< collapsible-split/start id=cab3f5720-d394-426a-8289-6bcf9a2c3157 type=derivation divclass="card card-body" >}}<div class="collapsible">
   <div></div>
 
 Schrödinger's equation
 
-{{< math-environment >}}
-\begin{align*}
+\begin{align\*}
     i \frac{d}{dt}\Psi = H\Psi
-\end{align*}
-
-{{< /math-environment >}}
+\end{align\*}
 
 </div>
 
@@ -143,28 +146,23 @@ block, like below.
 
 Which when exported will look like
 
-{{< collapsible-split/start id=c462e51bd-d685-42c4-9859-3362c3a17495 type=derivation divclass="card card-body" >}}<div class="collapsible">
+{{< collapsible-split/start id=c02438c3c-332b-4ad4-845d-d2d428329c7e type=derivation divclass="card card-body" >}}<div class="collapsible">
   <div></div>
 
 Schrödinger's equation
 
-{{< math-environment >}}
-\begin{align*}
+\begin{align\*}
     i \frac{d}{dt}\Psi = H\Psi
-\end{align*}
+\end{align\*}
 
-{{< /math-environment >}}
-{{< collapsible-split/start id=c291dadfe-e8f8-4d3f-9477-263595bef640 type=derivation divclass="card card-body" >}}<div class="collapsible1">
+{{< collapsible-split/start id=ce8c81809-96a0-4580-82d1-7911e5485de8 type=derivation divclass="card card-body" >}}<div class="collapsible1">
   <div></div>
 
 Schrödinger's time independent equation
 
-{{< math-environment >}}
-\begin{align*}
+\begin{align\*}
     H\Psi & = E\Psi
-\end{align*}
-
-{{< /math-environment >}}
+\end{align\*}
 
 </div>
 
@@ -189,7 +187,7 @@ in emacs, and then shift to and refresh the browser.
 
 Instead of exporting the html directly as in the above solution[^fn:1],
 I decided to write a shortcode for this purpose. First I added the
-following to my `/.emacs` file
+following to my `~/.emacs` file
 
 ```lisp
 (require 'org)

@@ -2,10 +2,10 @@
 #+SETUPFILE: ~/mol_1d/mol_1d/utils/notes/math-things.setup
 
 
-#+title: Organizing math derivations using org-mode
+#+title: Math derivations with collapsibles
 #+subtitle: Writing dynamical technical documentation
-#+date: 2020-02-24
-#+tags[]: howto, emacs
+#+date: 2020-04-03
+#+hugo_tags: howto emacs org-mode html
 #+HUGO_SECTION: blog
 #+HUGO_BASE_DIR: ../
 #+hugo_custom_front_matter: :math true :#comment "this file is [auto-generated]"
@@ -22,6 +22,11 @@
 # the derivation. This is a good structure for quickly getting an
 # overall idea of how the derivation goes, but it makes it difficult to
 # reproduce it.
+
+This blog post is about exporting mathematical derivations to html
+using [[https://orgmode.org/][org-mode]], with collapsibles to help organizing the content.
+
+#+hugo: more
 
 Working as a physisict, I often write technical documentation
 outlining a mathematical derivation. For this purpose, [[https://www.latex-project.org/][LaTeX]] is /the/
@@ -175,7 +180,7 @@ in emacs, and then shift to and refresh the browser.
 
 Instead of exporting the html directly as in the above solution[fn:1],
 I decided to write a shortcode for this purpose. First I added the
-following to my ~/.emacs~ file
+following to my ~~/.emacs~ file
 #+BEGIN_SRC lisp
   (require 'org)
 
