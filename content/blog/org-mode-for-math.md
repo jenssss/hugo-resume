@@ -8,8 +8,8 @@ math = true
 #comment = "this file is [auto-generated]"
 +++
 
-This blog post is about exporting mathematical derivations to html
-using [org-mode](https://orgmode.org/), with collapsibles to help organizing the content.
+How to export mathematical derivations to html using [org-mode](https://orgmode.org/), with
+collapsibles to help organizing the content.
 
 <!--more-->
 
@@ -113,7 +113,7 @@ To use this, I can add a block like the following to my `.org` file
 Upon export it should look like this (click the link to expand the
 collapsible, click again to collapse it)
 
-{{< collapsible-split/start id=cab3f5720-d394-426a-8289-6bcf9a2c3157 type=derivation divclass="card card-body" >}}<div class="collapsible">
+{{< collapsible-split/start id=c1d62db02-ab72-4e76-b356-b207ac02821c type=derivation divclass="card card-body" >}}<div class="collapsible">
   <div></div>
 
 Schrödinger's equation
@@ -146,7 +146,7 @@ block, like below.
 
 Which when exported will look like
 
-{{< collapsible-split/start id=c02438c3c-332b-4ad4-845d-d2d428329c7e type=derivation divclass="card card-body" >}}<div class="collapsible">
+{{< collapsible-split/start id=cec0a671c-f2b1-43d7-9f08-a0509ab084e6 type=derivation divclass="card card-body" >}}<div class="collapsible">
   <div></div>
 
 Schrödinger's equation
@@ -155,7 +155,7 @@ Schrödinger's equation
     i \frac{d}{dt}\Psi = H\Psi
 \end{align\*}
 
-{{< collapsible-split/start id=ce8c81809-96a0-4580-82d1-7911e5485de8 type=derivation divclass="card card-body" >}}<div class="collapsible1">
+{{< collapsible-split/start id=c7c84ae59-922d-4951-92fe-9188c6ef711b type=derivation divclass="card card-body" >}}<div class="collapsible1">
   <div></div>
 
 Schrödinger's time independent equation

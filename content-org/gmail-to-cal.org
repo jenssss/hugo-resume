@@ -1,0 +1,139 @@
+#+SETUPFILE: ~/mol_1d/mol_1d/utils/notes/stuff-I-like-to-use.setup
+#+SETUPFILE: ~/mol_1d/mol_1d/utils/notes/math-things.setup
+
+
+#+title: Automatically update calendars from gmail
+#+subtitle: Writing dynamical technical documentation
+#+date: 2020-04-03
+#+hugo_tags: howto google-apps-script gmail timetree regexp
+#+HUGO_SECTION: blog
+#+HUGO_BASE_DIR: ../
+#+hugo_custom_front_matter: :math true :#comment "this file is [auto-generated]"
+#+EXPORT_FILE_NAME: gmail-to-cal
+
+How to automatically create events in Google and Timetree calendars
+using regular expression matching with google apps script.
+
+#+hugo: more
+
+* The problem
+
+I like to cook, but I'm too lazy to plan what to make, and do the
+grocery shopping for it. When I was living in the US, I found a meal
+delivery service (Blue Apron), where I could pick meals on their
+homepage, and then they would deliver a box with all the needed
+ingredients and a recipe. A perfect solution for me, since I could get
+to do the cooking, but didn't have to worry about thinking up recipes,
+or planning the grocery shopping.
+
+After I moved to Japan I found a similar service called
+[[http://yoshikei-dvlp.co.jp/][Yoshikei]]. Different days have different recipes, so every week I pick
+two or three days with recipes I think look good. The problem then
+becomes that I can never remember for which days I ordered the meal
+boxes, and going to the Yoshikei homepage to check my order history is
+a bit of a hassle. Ideally I want to be able to check which days I get
+the deliveries in my calendar, but I'm too lazy to write this in every
+week. I felt like there ought to be a way to automate this.
+
+I noticed that in the email order confirmations from Yoshikei there
+would be a list of dishes and delivery dates, and this list would
+always be in the same format, like in this excerpt
+
+#+begin_example
+下記内容が、ご注文週の最終注文内容となります。
+-----------------------------------------------------------------------------
+2021/04/06（火）カットミール２人用（217）　ハニーマスタードチキン：1セット
+2021/04/07（水）カットミール２人用（317）　簡単！焼きカレー：1セット
+2021/04/08（木）カットミール２人用（417）　揚げない♪えびマヨ：1セット
+#+end_example
+So it shouldn't be difficult to extract the date and the name of the
+dish[fn:1], to insert this into a calendar. But how to connect this to
+the email in an automated way?
+
+Enter [[https://www.google.com/script/start/][Google Apps script]]. Apps scipts is an online platform, where you
+can write scripts in javascript. Since it's a Google service, it comes
+with integrations for handling gmail and google Calendar, as well as a
+number of other google services. It also has triggers for
+automatically executing scripts, for instance once per week.
+
+This was my first foray into writing anything with javascript, so it
+took a fair bit of googling, but I was eventually able to knit
+together a working solution.
+
+* The solution
+
+First I setup a filter in Gmail to add the label ~Receipts/Yoshikei~
+to all emails coming from Yoshikei. Next I wrote the following
+function in Apps Script
+
+#+begin_src javascript
+function readFoods(){
+    var yoshiLabel = GmailApp.getUserLabelByName("Receipts/Yoshikei");
+    var yoshiThreads = yoshiLabel.getThreads(0, 1);
+    var yoshiThread = yoshiThreads[0];
+    var foods = getFoodsFromThread(yoshiThread);
+    return foods;
+}
+#+end_src
+A couple of things going on here, so let's unpack them one by one.
+First I use the ~GmailApp~ object. This object provides an interface
+to Gmail, and is documented [[https://developers.google.com/apps-script/reference/gmail/gmail-app][here]]. From this I get all messages with
+the ~Receipts/Yoshikei~ label. In Gmail, messages are organized into
+threads, so we retrieve the first thread in this label, and sends it
+to another function for processing
+#+begin_src javascript
+function getFoodsFromThread(yoshiThread){
+    var messages = yoshiThread.getMessages();
+    var message = messages[0];
+    var foods = getFoods(message);
+    return foods;
+}
+#+end_src
+In this function we simply get the messages from the thread, and send
+the first message on for further processing
+#+begin_src javascript
+function getFoods(message) {
+    var matches = [];
+    var divideMatchString = "下記内容が、ご注文週の最終注文内容となります。";
+    var n = message.search(divideMatchString);
+    if (n != -1){
+	message = message.substring(n);
+	// This regexp matches to a date in yyyy/mm/dd format, then parenthesis with any character followed by line break
+	// After that any character until line break are matched
+	var matchString = "([0-9]{4}/[0-9]{2}/[0-9]{2}（.）)(.*)";
+	var match = message.match(matchString);
+	var i=0;
+	while(match != null && i<10){
+	    var dateString = match[1];
+	    var foodString = match[2];
+	    matches.push([dateString, foodString]);
+	    message = message.substr(match.index+match[0].length);
+	    match = message.match(matchString);
+	    i = i + 1;
+	}
+    }
+    return matches;
+}
+#+end_src
+This function uses regular expression matching to extract the
+information we want from the message. First we look for the string ~下記内容が、ご注文週の最終注文内容となります。~ using the javascript
+built in string ~search~ method. This string comes immediately before
+the section of the email we are interested in, so we remove any part
+of the message before this part using the ~substring~ method. Next we
+use a regular expression to match to a line that starts with a
+date. If a match is found, it is added to the an array called
+~matches~. This search is repeated until no more matches are found (or
+until it has been run 10 times).
+
+
+* COMMENT Local Variables                          :ARCHIVE:
+# Local Variables:
+# eval: (org-hugo-auto-export-mode)
+# End:
+
+* Footnotes
+
+[fn:1] For those not so proficient in Japanese, the name of the dish
+is the text that appears after the parenthesis with a number inside,
+until the colon. So the first dish is "ハニーマスタードチキン", which
+is "honey mustard chicken" in English.

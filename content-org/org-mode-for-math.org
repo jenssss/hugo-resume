@@ -23,8 +23,8 @@
 # overall idea of how the derivation goes, but it makes it difficult to
 # reproduce it.
 
-This blog post is about exporting mathematical derivations to html
-using [[https://orgmode.org/][org-mode]], with collapsibles to help organizing the content.
+How to export mathematical derivations to html using [[https://orgmode.org/][org-mode]], with
+collapsibles to help organizing the content.
 
 #+hugo: more
 
