@@ -1,22 +1,20 @@
-#+SETUPFILE: ~/mol_1d/mol_1d/utils/notes/stuff-I-like-to-use.setup
-#+SETUPFILE: ~/mol_1d/mol_1d/utils/notes/math-things.setup
-
-
-#+title: Automatically update calendars from Gmail
-#+subtitle: Writing dynamical technical documentation
-#+date: 2020-04-04
-#+hugo_tags: howto google-apps-script Gmail calendar TimeTree regexp
-#+HUGO_SECTION: blog
-#+HUGO_BASE_DIR: ../
-#+hugo_custom_front_matter: :math true :#comment "this file is [auto-generated]"
-#+EXPORT_FILE_NAME: gmail-to-cal
++++
+title = "Automatically update calendars from Gmail"
+author = ["Jens Svensmark"]
+date = 2020-04-04
+tags = ["howto", "google-apps-script", "Gmail", "calendar", "TimeTree", "regexp"]
+draft = false
+math = true
+#comment = "this file is [auto-generated]"
++++
 
 How to automatically create events in Google and TimeTree calendars
 using regular expression matching with Google Apps Script.
 
-#+hugo: more
+<!--more-->
 
-* The problem
+
+## The problem {#the-problem}
 
 I like to cook, but I'm too lazy to plan what to make, and do the
 grocery shopping for it. When I was living in the US, I found a meal
@@ -27,7 +25,7 @@ to do the cooking, but didn't have to worry about thinking up recipes,
 or planning the grocery shopping.
 
 After I moved to Japan I found a similar service called
-[[http://yoshikei-dvlp.co.jp/][Yoshikei]]. Different days have different recipes, so every week I pick
+[Yoshikei](http://yoshikei-dvlp.co.jp/). Different days have different recipes, so every week I pick
 two or three days with recipes I think look good. The problem then
 becomes that I can never remember for which days I ordered the meal
 boxes, and going to the Yoshikei homepage to check my order history is
@@ -39,18 +37,19 @@ I noticed that in the email order confirmations from Yoshikei there
 would be a list of dishes and delivery dates, and this list would
 always be in the same format, like in this excerpt
 
-#+begin_example
+```text
 下記内容が、ご注文週の最終注文内容となります。
 -----------------------------------------------------------------------------
 2021/04/06（火）カットミール２人用（217）　ハニーマスタードチキン：1セット
 2021/04/07（水）カットミール２人用（317）　簡単！焼きカレー：1セット
 2021/04/08（木）カットミール２人用（417）　揚げない♪えびマヨ：1セット
-#+end_example
+```
+
 So it shouldn't be difficult to extract the date and the name of the
-dish[fn:1], to insert this into a calendar. But how to connect this to
+dish[^fn:1], to insert this into a calendar. But how to connect this to
 the email in an automated way?
 
-Enter [[https://www.google.com/script/start/][Google Apps Script]]. Apps Script is an online platform, where you
+Enter [Google Apps Script](https://www.google.com/script/start/). Apps Script is an online platform, where you
 can write scripts in JavaScript. Since it's a Google service, it comes
 with integrations for handling Gmail and Google Calendar, as well as a
 number of other Google services. It also has triggers for
@@ -60,13 +59,17 @@ This was my first foray into writing anything with JavaScript, so it
 took a fair bit of googling, but I was eventually able to knit
 together a working solution.
 
-* The solution
-** Reading the email
-First I setup a filter in Gmail to add the label ~Receipts/Yoshikei~
+
+## The solution {#the-solution}
+
+
+### Reading the email {#reading-the-email}
+
+First I setup a filter in Gmail to add the label `Receipts/Yoshikei`
 to all emails coming from Yoshikei. Next I wrote the following
 function in Apps Script
 
-#+begin_src javascript
+```javascript
 function readFoods(){
     var yoshiLabel = GmailApp.getUserLabelByName("Receipts/Yoshikei");
     var yoshiThreads = yoshiLabel.getThreads(0, 1);
@@ -74,24 +77,28 @@ function readFoods(){
     var foods = getFoodsFromThread(yoshiThread);
     return foods;
 }
-#+end_src
+```
+
 A couple of things going on here, so let's unpack them one by one.
-First I use the ~GmailApp~ object. This object provides an interface
-to Gmail, and is documented [[https://developers.google.com/apps-script/reference/gmail/gmail-app][here]]. From this I get all messages with
-the ~Receipts/Yoshikei~ label. In Gmail, messages are organized into
+First I use the `GmailApp` object. This object provides an interface
+to Gmail, and is documented [here](https://developers.google.com/apps-script/reference/gmail/gmail-app). From this I get all messages with
+the `Receipts/Yoshikei` label. In Gmail, messages are organized into
 threads, so I retrieve the first thread in this label, and sends it
 to another function for processing
-#+begin_src javascript
+
+```javascript
 function getFoodsFromThread(yoshiThread){
     var messages = yoshiThread.getMessages();
     var message = messages[0];
     var foods = getFoods(message);
     return foods;
 }
-#+end_src
+```
+
 In this function I simply get the messages from the thread, and send
 the first message on for further processing
-#+begin_src javascript
+
+```javascript
 function getFoods(message) {
     var matches = [];
     var divideMatchString = "下記内容が、ご注文週の最終注文内容となります";
@@ -114,21 +121,23 @@ function getFoods(message) {
     }
     return matches;
 }
-#+end_src
+```
+
 This function uses regular expression matching to extract the
-information I want from the message. First I look for the string ~下
-記内容が、ご注文週の最終注文内容となります~ using the javascript
-built in string ~search~ method. This string comes immediately before
+information I want from the message. First I look for the string `下
+記内容が、ご注文週の最終注文内容となります` using the javascript
+built in string `search` method. This string comes immediately before
 the section of the email I am interested in, so I remove any part
-of the message before this part using the ~substring~ method. Next I
+of the message before this part using the `substring` method. Next I
 use a regular expression to match to a line that starts with a
 date. If a match is found, it is added to the an array called
-~matches~. This search is repeated until no more matches are found (or
+`matches`. This search is repeated until no more matches are found (or
 until it has been run 10 times).
 
-Next, I wrote functions for extracting the date as a ~Date~ object,
+Next, I wrote functions for extracting the date as a `Date` object,
 and the part of the string that contains the name of the food.
-#+begin_src javascript
+
+```javascript
 function parseFood(food){
     const [date, endTime] = parseFoodDate(food[0]);
     const foodName = parseFoodName(food[1]);
@@ -148,17 +157,19 @@ function parseFoodName(foodString){
     foodName = foodName.split("（")[0]
     return foodName;
 }
-#+end_src
+```
 
-** Syncing to the calendars
+
+### Syncing to the calendars {#syncing-to-the-calendars}
 
 Now, to put this food into Google Calendar. Since I was using Google
-Apps Script, this was fairly easy to do using the [[https://developers.google.com/apps-script/reference/calendar/calendar-app][CalendarApp]] object.
+Apps Script, this was fairly easy to do using the [CalendarApp](https://developers.google.com/apps-script/reference/calendar/calendar-app) object.
 I got the calendar ID from the settings page in Google Calendar (here
 I replaced the ID with asterisks). I am also checking that I didn't
 already create an event for Yoshikei on the relevant day, before
 adding the new event.
-#+begin_src javascript
+
+```javascript
 function putFoodInGCalendar(food){
     const [date, endTime, foodName] = parseFood(food);
 
@@ -170,18 +181,19 @@ function putFoodInGCalendar(food){
 	Logger.log(date);
 	Logger.log("Created event");
     } else {
-        Logger.log(date);
+	Logger.log(date);
 	Logger.log("Event already exists");
     }
 }
-#+end_src
+```
 
 I also wanted to add an event into a different calendar app called
-[[https://timetreeapp.com/][TimeTree]]. Fortunately this app has a [[https://developers.timetreeapp.com/en/docs/api/overview][public API]], but since it is not a
+[TimeTree](https://timetreeapp.com/). Fortunately this app has a [public API](https://developers.timetreeapp.com/en/docs/api/overview), but since it is not a
 Google service, interacting with the API takes a bit more work than
-for Google Calendar. It can be done though, using the [[https://developers.google.com/apps-script/reference/url-fetch/url-fetch-app][UrlFetchApp]]
+for Google Calendar. It can be done though, using the [UrlFetchApp](https://developers.google.com/apps-script/reference/url-fetch/url-fetch-app)
 class, as in the following
-#+begin_src javascript
+
+```javascript
 function putFoodInTimetree(food){
 
     const [date, endTime, foodName] = parseFood(food);
@@ -192,71 +204,73 @@ function putFoodInTimetree(food){
     var me_ID2 = "**********";
     var me = {"id":me_ID1,"type":"user"};
     var headers = {"Accept" : "application/vnd.timetree.v1+json",
-                   "Authorization" : "Bearer "+AccessToken};
+		   "Authorization" : "Bearer "+AccessToken};
 
     var event_data = {
-        "data": {
-            "attributes": {
-                "category": "schedule",
-                "title": foodName,
-                "all_day": false,
-                "start_at": date.toISOString(),
-                "end_at": endTime.toISOString(),
-                "description": "ヨシケイ",
-                "location": "Home",
-                "url": "https://www2.yoshikei-dvlp.co.jp/webodr/"
-            },
-            "relationships": {
-                "label": {
-                    "data": {
-                        "id": meID2,
-                        "type": "label"
-                    }
-                },
-                "attendees": {
-                    "data": [
-                        me
-                    ]
-                }
-            },
-        }
+	"data": {
+	    "attributes": {
+		"category": "schedule",
+		"title": foodName,
+		"all_day": false,
+		"start_at": date.toISOString(),
+		"end_at": endTime.toISOString(),
+		"description": "ヨシケイ",
+		"location": "Home",
+		"url": "https://www2.yoshikei-dvlp.co.jp/webodr/"
+	    },
+	    "relationships": {
+		"label": {
+		    "data": {
+			"id": meID2,
+			"type": "label"
+		    }
+		},
+		"attendees": {
+		    "data": [
+			me
+		    ]
+		}
+	    },
+	}
     };
 
     var event_data_str = JSON.stringify(event_data);
     headers["Content-Type"] = "application/json;"
     var options = {"method": "POST",
-                   "headers": headers,
-                   "payload": event_data_str,
-                   "muteHttpExceptions": true};
+		   "headers": headers,
+		   "payload": event_data_str,
+		   "muteHttpExceptions": true};
     var response = UrlFetchApp.fetch("https://timetreeapis.com/calendars/"+CalendarID+"/events", options);
     var insertedEvent = response.getContentText();
     Logger.log(insertedEvent);
 }
-#+end_src
+```
 
 Finally, to pull all this together, I wrote the main entry point function
 for my project
-#+begin_src javascript
+
+```javascript
 function readFoodAndPutInCalendar() {
     var foods = readFoods();
     for (var i = 0; i < foods.length; i++) {
-        if (isThisANewFood(foods[i])){
-            putFoodInGCalendar(foods[i]);
-            putFoodInTimetree(foods[i]);
-        }
+	if (isThisANewFood(foods[i])){
+	    putFoodInGCalendar(foods[i]);
+	    putFoodInTimetree(foods[i]);
+	}
     }
 }
-#+end_src
+```
+
 When setting up a trigger for automatically running this project, this
 is the function that the trigger should run. The function can also be
 run manually in the Apps Script interface.
 
-As a security feature, Google Apps Script requires that [[https://developers.google.com/identity/protocols/oauth2/scopes][authorization
-scopes]] for the script be specified. This should happen automatically,
+As a security feature, Google Apps Script requires that [authorization
+scopes](https://developers.google.com/identity/protocols/oauth2/scopes) for the script be specified. This should happen automatically,
 but in case it doesn't, one can manually specify these scopes in the
-~appsscript.json~ file. For this project the required scopes are
+`appsscript.json` file. For this project the required scopes are
 
-#+begin_src json
+```json
 {
   "oauthScopes": [
       "https://www.googleapis.com/auth/gmail.readonly",
@@ -265,20 +279,10 @@ but in case it doesn't, one can manually specify these scopes in the
       "https://www.googleapis.com/auth/script.external_request"
     ],
 }
-#+end_src
+```
 
-I made a [[https://gist.github.com/jenssss/1d17319085f89c91f5967c518b08fac0][gist]] with all the code from this post, and an additional
+I made a [gist](https://gist.github.com/jenssss/1d17319085f89c91f5967c518b08fac0) with all the code from this post, and an additional
 feature designed to prevent accidentally adding the same dish more
 than once.
 
-* COMMENT Local Variables                          :ARCHIVE:
-# Local Variables:
-# eval: (org-hugo-auto-export-mode)
-# End:
-
-* Footnotes
-
-[fn:1] For those not so proficient in Japanese, the name of the dish
-is the text that appears after the parenthesis with a number inside,
-until the colon. So the first dish is "ハニーマスタードチキン", which
-is "honey mustard chicken" in English.
+[^fn:1]: For those not so proficient in Japanese, the name of the dish is the text that appears after the parenthesis with a number inside, until the colon. So the first dish is "ハニーマスタードチキン", which is "honey mustard chicken" in English.
