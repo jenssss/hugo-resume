@@ -8,7 +8,7 @@ weight = 10  # Order that this section will appear.
 title = "Jens Svensmark"
 
 # Hero image (optional). Enter filename of an image in the `static/img/` folder.
-hero_media = "user.png"
+hero_media = "Jens.jpg"
 
 [design.background]
   # Apply a background color, gradient, or image.
