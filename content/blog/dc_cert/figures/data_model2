@@ -1,0 +1,32 @@
+// Data model 2
+graph {
+	graph [rankdir=LR]
+	subgraph clusterA {
+		node [color=white style=filled]
+		color=lightgrey shape=egg style=filled
+		model
+		transmission
+		fuelType
+		engineSize
+		year
+		label="New car configuration"
+	}
+	subgraph clusterB {
+		node [color=white style=filled]
+		color=lightgrey style=filled
+		mileage
+		label=Usage
+	}
+	subgraph clusterC {
+		node [color=white style=filled]
+		color=lightgrey style=filled
+		price
+		tax
+		mpg
+		label=Predictables
+	}
+	clusterA -- mpg [dir=forward]
+	clusterA -- tax [dir=forward splines=ortho]
+	clusterA -- price [dir=forward]
+	clusterB -- price [dir=forward splines=curved]
+}
