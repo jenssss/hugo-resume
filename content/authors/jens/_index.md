@@ -6,9 +6,9 @@ avatar_image: "user.png"
 authors:
 - jens
 # resume download button
-btn:
-- url : "files/CV-Jens.pdf"
-  label : "Download Resume"
+# btn:
+# - url : "files/CV-Jens.pdf"
+#   label : "Download Resume"
 
 # Is this the primary user of the site?
 superuser: true
