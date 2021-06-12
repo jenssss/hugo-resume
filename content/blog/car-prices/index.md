@@ -11,7 +11,7 @@ This project aims to predict the resale prices of BMW cars, based on historical 
 
 <!--more-->
 
-Slides for a presentation with a non-technical target audience can be seen [here](../slides.html). The source for this project is available on [github](https://github.com/jenssss/datacamp-certification). The model developed in the project is deployed to Heroku, and can be queried using the following form (note that not all fields need to be filled out, and that it may take more than 10 seconds for the first response to appear, although subsequent responses will be faster)
+Slides for a presentation with a non-technical target audience can be seen [here](slides.html). The source for this project is available on [github](https://github.com/jenssss/datacamp-certification). The model developed in the project is deployed to Heroku, and can be queried using the following form (note that not all fields need to be filled out, and that it may take more than 10 seconds for the first response to appear, although subsequent responses will be faster)
 
 {{< form >}}
 
