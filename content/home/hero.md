@@ -44,6 +44,4 @@ hero_media = "Jens.jpg"
 +++
 # Hi, I'm **Jens**. I'm a physicist looking for a **software engineering** or **data science** role.
 
-Note: This site is still under construction.
-
 Click below, or scroll down to learn more.
