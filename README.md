@@ -1,6 +1,6 @@
 # hugo-resume
 
-My personal resume website, built using [hugo](https://gohugo.io/).
+My personal [resume website](https://svensmark.jp), built using [hugo](https://gohugo.io/).
 
 Download from git using
 ```
