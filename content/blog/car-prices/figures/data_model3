@@ -1,0 +1,29 @@
+// Data model 3
+graph {
+	subgraph clusterA {
+		node [color=white style=filled]
+		color=lightgrey shape=egg style=filled
+		model
+		transmission
+		fuelType
+		engineSize
+		year
+		label="New car configuration"
+	}
+	subgraph clusterB {
+		node [color=white style=filled]
+		color=lightgrey style=filled
+		mileage
+		label=Usage
+	}
+	subgraph clusterC {
+		node [color=white style=filled]
+		color=lightgrey style=filled
+		tax
+		mpg
+		label=Others
+	}
+	clusterA -- price [dir=forward]
+	clusterB -- price [dir=forward]
+	clusterC -- price [color=grey dir=forward]
+}

@@ -7,7 +7,7 @@ authors:
 - jens
 # resume download button
 btn:
-- url : "files/CV-Jens.pdf"
+- url : "files/resume.pdf"
   label : "Download Resume"
 
 # Is this the primary user of the site?
@@ -18,7 +18,7 @@ role: Assistant Professor of Physics
 
 # Organizations/Affiliations
 organizations:
-- name: University of Electro-Communications
+- name: University of Electro-Communications, Tokyo
   url: ""
 
 # Short bio (displayed in user profile at end of posts)
@@ -30,6 +30,7 @@ display_education: true
 interests:
 - Programming
 - Math
+- Predictive modeling
 - Physics
 
 education:

@@ -1,0 +1,9 @@
+// First data model
+digraph {
+	graph [rankdir=LR]
+	m [label=mileage]
+	y [label=year]
+	p [label=price]
+	m -> p
+	y -> p
+}
