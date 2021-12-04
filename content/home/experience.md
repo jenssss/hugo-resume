@@ -18,12 +18,21 @@ date_format = "Jan 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
+  title = "Data scientist"
+  company = "U-NEXT"
+  company_url = "https://www.unext.co.jp/en"
+  location = "Tokyo"
+  date_start = "2021-12-01"
+  date_end = ""
+  description = """ """
+
+[[experience]]
   title = "Assistant Professor"
   company = "The University of Electro-Communications"
   company_url = "https://www.uec.ac.jp/"
   location = "Tokyo"
   date_start = "2019-11-30"
-  date_end = ""
+  date_end = "2021-11-28"
   description = """Predicting how molecules move when exposed to lasers, with potential applications in controlling chemical reactions and materials science. 
   
 -  Developed and implemented a new analytical theory for modeling types of laser-molecule interactions that was very difficult or impossible to model with previous methods. The new theory reduced computational time from months or years down to minutes. 

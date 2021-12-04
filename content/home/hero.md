@@ -42,6 +42,6 @@ hero_media = "Jens.jpg"
   label = "Contact me"
 
 +++
-# Hi, I'm **Jens**. I'm a physicist looking for a **software engineering** or **data science** role.
+# Hi, I'm **Jens**. I'm a **Data Scientist** with a background in physics.
 
 Click below, or scroll down to learn more.

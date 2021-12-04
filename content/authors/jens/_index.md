@@ -14,15 +14,15 @@ btn:
 superuser: true
 
 # Role/position
-role: Assistant Professor of Physics
+role: Data Scientist
 
 # Organizations/Affiliations
 organizations:
-- name: University of Electro-Communications, Tokyo
+- name: U-NEXT, Tokyo
   url: ""
 
 # Short bio (displayed in user profile at end of posts)
-bio: I'm a quantum physicist currently looking for a software engineering or data science role.
+bio: I'm a Data Scientist with a background in physics.
 
 # Should the user's education and interests be displayed?
 display_education: true
@@ -75,12 +75,6 @@ social:
 email: ""
 
 ---
-
-Currently I am working as a quantum physicist. As part of this, I
-write programs to simulate the time evolution of quantum systems. I
-very much enjoy and feel passionate about the programming part of my
-work, and I would like to pursue this even further. That is why I am
-currently looking for a software engineering or data science job.
 
 With a PhD in quantum physics I have a solid mathematical/technical
 background. Through my work as a physicist I have gained extensive
