@@ -24,7 +24,7 @@ date_format = "Jan 2006"
   location = "Tokyo"
   date_start = "2021-12-01"
   date_end = ""
-  description = """ """
+  description = """ Building recommendation systems that daily recommends movies and books to more than 3 million users. Continuously improving these systems through AB testing. """
 
 [[experience]]
   title = "Assistant Professor"
