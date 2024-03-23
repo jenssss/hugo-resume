@@ -74,6 +74,8 @@ social:
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email: ""
 
+# For details about my research, see [my research
+# page](http://power1.pc.uec.ac.jp/~jenssss/).
 ---
 
 With a PhD in quantum physics I have a solid mathematical/technical
@@ -81,5 +83,4 @@ background. Through my work as a physicist I have gained extensive
 experience using both efficient low-level languages like Fortran, and
 more abstract high-level languages like Python.
 
-# For details about my research, see [my research
-# page](http://power1.pc.uec.ac.jp/~jenssss/).
+
