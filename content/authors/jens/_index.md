@@ -81,5 +81,5 @@ background. Through my work as a physicist I have gained extensive
 experience using both efficient low-level languages like Fortran, and
 more abstract high-level languages like Python.
 
-For details about my research, see [my research
-page](http://power1.pc.uec.ac.jp/~jenssss/).
+# For details about my research, see [my research
+# page](http://power1.pc.uec.ac.jp/~jenssss/).
